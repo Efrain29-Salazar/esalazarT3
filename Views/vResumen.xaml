@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="esalazarT3.Views.vResumen"
+             Title="Resumen"
+             BackgroundColor="#F4F6F8">
+
+    <!-- ESTILOS EXPLÍCITOS (con x:Key): solo se aplican donde se pide con Style="{StaticResource ...}" -->
+    <ContentPage.Resources>
+
+        <Style x:Key="EstiloTitulo" TargetType="Label">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+
+        <Style x:Key="EstiloSubtitulo" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="#E6F1F0"/>
+        </Style>
+
+        <Style x:Key="EstiloSeccion" TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#2A9D8F"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EstiloCampo" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="#5F6B7A"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EstiloValor" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#1B2733"/>
+            <Setter Property="LineBreakMode" Value="WordWrap"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EstiloCampoDestacado" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="#C9D6E3"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EstiloValorDestacado" TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EstiloTarjeta" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Stroke" Value="#DDE3EA"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="16"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="EstiloTarjetaDestacada" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="#1F3A5F"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="16"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="EstiloBotonPrimario" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2A9D8F"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <Style x:Key="EstiloBotonSecundario" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="#1F3A5F"/>
+            <Setter Property="BorderColor" Value="#1F3A5F"/>
+            <Setter Property="BorderWidth" Value="1.5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Encabezado con imagen -->
+            <Grid HeightRequest="170">
+                <Image Source="banner_resumen.jpg"
+                       Aspect="AspectFill"/>
+                <VerticalStackLayout VerticalOptions="End"
+                                     Padding="20,0,20,16"
+                                     Spacing="2">
+                    <Label Text="Resumen del contacto"
+                           Style="{StaticResource EstiloTitulo}"/>
+                    <Label Text="Datos registrados y aporte al IESS"
+                           Style="{StaticResource EstiloSubtitulo}"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Padding="16,16,16,24" Spacing="14">
+
+                <!-- Tarjeta 1: datos del contacto -->
+                <Border Style="{StaticResource EstiloTarjeta}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <Border WidthRequest="48"
+                                    HeightRequest="48"
+                                    Padding="0"
+                                    StrokeThickness="0"
+                                    StrokeShape="Ellipse"
+                                    Grid.Column="0">
+                                <Image Source="logo_contactos.jpg"
+                                       Aspect="AspectFill"/>
+                            </Border>
+                            <Label Text="DATOS DEL CONTACTO"
+                                   Style="{StaticResource EstiloSeccion}"
+                                   Grid.Column="1"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="130,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                              ColumnSpacing="10"
+                              RowSpacing="10">
+
+                            <Label Text="Tipo de ID" Style="{StaticResource EstiloCampo}" Grid.Row="0" Grid.Column="0"/>
+                            <Label x:Name="lblTipo" Style="{StaticResource EstiloValor}" Grid.Row="0" Grid.Column="1"/>
+
+                            <Label Text="Identificación" Style="{StaticResource EstiloCampo}" Grid.Row="1" Grid.Column="0"/>
+                            <Label x:Name="lblIdentificacion" Style="{StaticResource EstiloValor}" Grid.Row="1" Grid.Column="1"/>
+
+                            <Label Text="Nombres" Style="{StaticResource EstiloCampo}" Grid.Row="2" Grid.Column="0"/>
+                            <Label x:Name="lblNombres" Style="{StaticResource EstiloValor}" Grid.Row="2" Grid.Column="1"/>
+
+                            <Label Text="Apellidos" Style="{StaticResource EstiloCampo}" Grid.Row="3" Grid.Column="0"/>
+                            <Label x:Name="lblApellidos" Style="{StaticResource EstiloValor}" Grid.Row="3" Grid.Column="1"/>
+
+                            <Label Text="Nacimiento" Style="{StaticResource EstiloCampo}" Grid.Row="4" Grid.Column="0"/>
+                            <Label x:Name="lblFecha" Style="{StaticResource EstiloValor}" Grid.Row="4" Grid.Column="1"/>
+
+                            <Label Text="Correo" Style="{StaticResource EstiloCampo}" Grid.Row="5" Grid.Column="0"/>
+                            <Label x:Name="lblCorreo" Style="{StaticResource EstiloValor}" Grid.Row="5" Grid.Column="1"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Tarjeta 2: detalle salarial -->
+                <Border Style="{StaticResource EstiloTarjetaDestacada}">
+                    <Grid ColumnDefinitions="*,Auto"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="10"
+                          RowSpacing="14">
+
+                        <Label Text="Salario mensual" Style="{StaticResource EstiloCampoDestacado}" Grid.Row="0" Grid.Column="0"/>
+                        <Label x:Name="lblSalario" Style="{StaticResource EstiloValorDestacado}" Grid.Row="0" Grid.Column="1"/>
+
+                        <Label Text="Aporte IESS (9,45%)" Style="{StaticResource EstiloCampoDestacado}" Grid.Row="1" Grid.Column="0"/>
+                        <Label x:Name="lblAporte" Style="{StaticResource EstiloValorDestacado}" TextColor="#F4A261" Grid.Row="1" Grid.Column="1"/>
+
+                        <Label Text="Salario neto" Style="{StaticResource EstiloCampoDestacado}" Grid.Row="2" Grid.Column="0"/>
+                        <Label x:Name="lblNeto" Style="{StaticResource EstiloValorDestacado}" Grid.Row="2" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+
+                <!-- Botones -->
+                <Button x:Name="btnExportar"
+                        Text="Exportar a archivo de texto"
+                        Style="{StaticResource EstiloBotonPrimario}"
+                        Clicked="btnExportar_Clicked"/>
+
+                <Button x:Name="btnVolver"
+                        Text="Volver"
+                        Style="{StaticResource EstiloBotonSecundario}"
+                        Clicked="btnVolver_Clicked"/>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

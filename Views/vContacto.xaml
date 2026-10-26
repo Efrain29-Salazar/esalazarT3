@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="esalazarT3.Views.vContacto"
+             Title="Nuevo contacto"
+             BackgroundColor="#F4F6F8">
+
+    <!-- ESTILOS IMPLÍCITOS (sin x:Key): se aplican solos a todos los controles de ese tipo en esta página -->
+    <ContentPage.Resources>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#1F3A5F"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#1B2733"/>
+            <Setter Property="PlaceholderColor" Value="#9AA5B1"/>
+        </Style>
+
+        <Style TargetType="Picker">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#1B2733"/>
+            <Setter Property="TitleColor" Value="#9AA5B1"/>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#1B2733"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#1F3A5F"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <Style TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Stroke" Value="#DDE3EA"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="StrokeShape">
+                <Setter.Value>
+                    <RoundRectangle CornerRadius="16"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Encabezado con imagen -->
+            <Grid HeightRequest="170">
+                <Image Source="banner_contacto.jpg"
+                       Aspect="AspectFill"/>
+                <VerticalStackLayout VerticalOptions="End"
+                                     Padding="20,0,20,16"
+                                     Spacing="2">
+                    <Label Text="Registro de contactos"
+                           FontSize="26"
+                           TextColor="White"
+                           Margin="0"/>
+                    <Label Text="Complete los datos del contacto"
+                           FontSize="14"
+                           FontAttributes="None"
+                           TextColor="#E6F1F0"
+                           Margin="0"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Padding="16,16,16,24" Spacing="14">
+
+                <!-- Tarjeta 1: identificación -->
+                <Border>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="IDENTIFICACIÓN"
+                               FontSize="12"
+                               TextColor="#2A9D8F"
+                               Margin="0"/>
+                        <Label Text="Tipo de identificación"/>
+                        <Picker x:Name="pkrTipo"
+                                Title="Seleccione el tipo"
+                                SelectedIndexChanged="pkrTipo_SelectedIndexChanged"/>
+                        <Label Text="Número de identificación"/>
+                        <Entry x:Name="txtIdentificacion"
+                               Placeholder="Primero elija el tipo"
+                               IsEnabled="False"
+                               TextChanged="txtIdentificacion_TextChanged"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Tarjeta 2: datos personales -->
+                <Border>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="DATOS PERSONALES"
+                               FontSize="12"
+                               TextColor="#2A9D8F"
+                               Margin="0"/>
+                        <Label Text="Nombres"/>
+                        <Entry x:Name="txtNombres"
+                               Placeholder="Ej: María José"
+                               MaxLength="50"/>
+                        <Label Text="Apellidos"/>
+                        <Entry x:Name="txtApellidos"
+                               Placeholder="Ej: Pérez Andrade"
+                               MaxLength="50"/>
+                        <Label Text="Fecha de nacimiento"/>
+                        <DatePicker x:Name="dpFecha"
+                                    Format="dd/MM/yyyy"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Tarjeta 3: contacto y salario -->
+                <Border>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="CONTACTO Y SALARIO"
+                               FontSize="12"
+                               TextColor="#2A9D8F"
+                               Margin="0"/>
+                        <Label Text="Correo electrónico"/>
+                        <Entry x:Name="txtCorreo"
+                               Placeholder="usuario@correo.com"
+                               Keyboard="Email"
+                               MaxLength="80"/>
+                        <Label Text="Salario mensual (USD)"/>
+                        <Entry x:Name="txtSalario"
+                               Placeholder="Ej: 850.50"
+                               Keyboard="Numeric"
+                               MaxLength="10"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Errores de validación -->
+                <Label x:Name="lblErrores"
+                       IsVisible="False"
+                       FontSize="14"
+                       FontAttributes="None"
+                       TextColor="#C0392B"
+                       BackgroundColor="#FDECEA"
+                       Padding="12"/>
+
+                <!-- Botones -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button x:Name="btnGuardar"
+                            Text="Ver resumen"
+                            Clicked="btnGuardar_Clicked"
+                            Grid.Column="0"/>
+                    <Button x:Name="btnLimpiar"
+                            Text="Limpiar"
+                            BackgroundColor="#7B8794"
+                            Clicked="btnLimpiar_Clicked"
+                            Grid.Column="1"/>
+                </Grid>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
